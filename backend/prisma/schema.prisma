@@ -1,0 +1,42 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // OR "mongodb" or "mysql" depending on your choice
+  url      = env("DATABASE_URL")
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float    // Base price per slot
+  imageUrl    String
+  slots       Slot[]   // Relation to available slots
+}
+
+model Slot {
+  id            String    @id @default(cuid())
+  experienceId  String
+  experience    Experience @relation(fields: [experienceId], references: [id])
+  startTime     DateTime
+  endTime       DateTime
+  capacity      Int       // Total capacity for this slot
+  bookedCount   Int       @default(0) // Current number of bookings
+  bookings      Booking[] // Relation to actual bookings
+
+  @@unique([experienceId, startTime]) // Ensures one unique slot time per experience
+}
+
+model Booking {
+  id            String   @id @default(cuid())
+  slotId        String
+  slot          Slot     @relation(fields: [slotId], references: [id])
+  customerName  String
+  customerEmail String
+  finalPrice    Float
+  promoCodeUsed String?
+  bookedAt      DateTime @default(now())
+}

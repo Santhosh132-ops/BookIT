@@ -1,0 +1,31 @@
+// tsconfig.json
+{
+  "compilerOptions": {
+    /* Project Options */
+    "target": "ES2022",                                  /* Specify ECMAScript target version */
+    "module": "NodeNext",                                /* Specify module code generation */
+    "moduleResolution": "NodeNext",                      /* Specify how modules are resolved */
+    "rootDir": "./src",                                  /* Specify the root directory of input files */
+    "outDir": "./dist",                                  /* Specify output directory */
+    
+    /* Type Checking */
+    "strict": true,                                      /* Enable all strict type-checking options */
+    "esModuleInterop": true,                             /* Emit additional JS to ease support for importing CommonJS modules */
+    "skipLibCheck": true,                                /* Skip type checking all .d.ts files */
+
+    /* Output and Source Maps */
+    "sourceMap": true,                                   /* Create source map files for emitted JavaScript files */
+    "removeComments": true,                              /* Disable emitting comments */
+    
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing of paths are correct */
+    "resolveJsonModule": true,                           /* Allow importing .json files */
+    "allowSyntheticDefaultImports": true                 /* Allow default imports from modules with no default export */
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
